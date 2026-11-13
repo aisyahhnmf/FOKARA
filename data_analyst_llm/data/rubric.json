@@ -1,0 +1,36 @@
+{
+  "score_scale": {
+    "0": "Tidak menjawab, kosong, atau sepenuhnya tidak relevan.",
+    "1": "Sangat kurang; hanya menyebut istilah tanpa penjelasan memadai atau terdapat kesalahan mendasar.",
+    "2": "Cukup; sebagian konsep benar tetapi penjelasan, alasan, atau penerapannya masih terbatas.",
+    "3": "Baik; sebagian besar ekspektasi terpenuhi, penjelasan benar dan cukup terstruktur.",
+    "4": "Sangat baik untuk level yang dipilih; lengkap, akurat, bernalar, dan sesuai konteks."
+  },
+  "general_rubric": {
+    "relevance": "Informasi yang disampaikan menjawab pertanyaan dan relevan dengan posisi.",
+    "communication": "Jawaban jelas, runtut, mudah dipahami, dan tidak bertele-tele.",
+    "self_awareness": "Mampu mengidentifikasi pengalaman, kekuatan, area pengembangan, dan kontribusi diri secara realistis.",
+    "persuasiveness": "Alasan didukung contoh/bukti yang relevan; bukan sekadar klaim atau kepercayaan diri."
+  },
+  "technical_rubric": {
+    "relevance": "Jawaban menanggapi inti persoalan teknis dan batasan kasus.",
+    "technical_accuracy": "Konsep, istilah, metode, dan langkah teknis tepat.",
+    "reasoning": "Alasan pemilihan pendekatan dijelaskan secara logis dengan asumsi yang relevan.",
+    "problem_solving": "Mampu mengidentifikasi masalah, memilih solusi, mempertimbangkan trade-off, dan/atau validasi.",
+    "communication": "Penjelasan teknis tersusun jelas dan dapat diikuti."
+  },
+  "level_expectations": {
+    "Beginner": "Menjelaskan konsep dasar dan langkah sederhana dengan benar; tidak dituntut trade-off kompleks.",
+    "Intermediate": "Menerapkan konsep pada kasus, membandingkan opsi, dan menjelaskan alasan pemilihan.",
+    "Advanced": "Menangani kasus kompleks, asumsi, trade-off, risiko, validasi, dan implikasi keputusan."
+  },
+  "scoring_rules": [
+    "Gunakan hanya kriteria yang berlaku untuk question_type.",
+    "Jangan memberi nilai nol untuk kriteria yang tidak berlaku.",
+    "Nilai setiap kriteria sebagai integer 0 sampai 4.",
+    "Sesuaikan standar dengan experience_level, bukan membandingkan Beginner dengan Advanced.",
+    "Jawaban singkat tidak otomatis buruk; nilai substansi, bukan panjang.",
+    "Jangan mengarang pengalaman atau fakta yang tidak disampaikan pengguna.",
+    "Jika pertanyaan tidak dapat dinilai dari jawaban, tandai insufficient_evidence."
+  ]
+}

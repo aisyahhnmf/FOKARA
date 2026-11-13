@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "required": [
+    "question_id",
+    "question_type",
+    "scores",
+    "average_score",
+    "fulfilled_elements",
+    "missing_elements",
+    "strengths",
+    "feedback",
+    "improvement_suggestion",
+    "ideal_answer_outline",
+    "needs_followup",
+    "insufficient_evidence"
+  ],
+  "properties": {
+    "question_id": {
+      "type": "string"
+    },
+    "question_type": {
+      "type": "string",
+      "enum": [
+        "general",
+        "technical"
+      ]
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4
+      }
+    },
+    "average_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "fulfilled_elements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_elements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "feedback": {
+      "type": "string"
+    },
+    "improvement_suggestion": {
+      "type": "string"
+    },
+    "ideal_answer_outline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "needs_followup": {
+      "type": "boolean"
+    },
+    "followup_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "insufficient_evidence": {
+      "type": "boolean"
+    }
+  }
+}
