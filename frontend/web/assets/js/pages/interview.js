@@ -111,9 +111,10 @@ function renderSide() {
       <div class="intro">
         <b>Siap berlatih?</b>
         <p class="muted">
-          ${total} pertanyaan akan muncul satu per satu setelah sesi dimulai.
-          Jawab seperti pada wawancara sebenarnya, lalu tekan tombol lanjut
-          saat selesai menjawab.
+          ${total} pertanyaan akan ditampilkan secara bertahap.
+          Jawab setiap pertanyaan dengan jelas dan natural,
+          seperti saat mengikuti wawancara kerja.
+          Tekan tombol "Pertanyaan berikutnya" setelah selesai menjawab.
         </p>
       </div>
     `;
@@ -142,7 +143,8 @@ function renderSide() {
 
   const lock = left > 0
     ? `<p class="muted small qlock">
-         ${left} pertanyaan berikutnya akan muncul setelah Anda lanjut.
+         ${left} pertanyaan tersisa. Pertanyaan berikutnya
+        akan ditampilkan setelah Anda menekan tombol lanjut.      
        </p>`
     : "";
 

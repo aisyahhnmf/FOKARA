@@ -940,7 +940,7 @@ function rubrikHtml() {
         q.rubrik.overall_feedback
           ? `
             <div class="rub-feedback" style="margin-top:12px">
-              <b>Evaluasi keseluruhan AI</b>
+              <b>Ringkasan evaluasi AI</b>
               <p>${esc(q.rubrik.overall_feedback)}</p>
             </div>
           `
@@ -1000,6 +1000,7 @@ function rubrikHtml() {
 // 12. KOMPONEN COMPUTER VISION
 // ======================================================
 
+
 function cvIndicatorHtml(item) {
   if (!item || !item.total) {
     return `
@@ -1010,41 +1011,57 @@ function cvIndicatorHtml(item) {
         </div>
 
         <p class="muted small">
-          Belum ada observasi untuk indikator ini.
+          Hasil deteksi untuk indikator ini belum tersedia.
         </p>
       </div>
     `;
   }
 
+  // Gunakan satuan yang sesuai dengan jenis indikator.
+  const countUnit =
+    item.id === "head_motion"
+      ? "gerakan"
+      : "hasil deteksi";
+
   const distribution = item.labels.length
-    ? item.labels.map((label) => `
-        <div style="margin-top:8px">
+    ? item.labels.map((label) => {
+        const percentage = Number(label.percentage).toLocaleString(
+          "id-ID",
+          {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+          }
+        );
 
-          <div class="aspek-head">
-            <span class="small">
-              ${esc(formatLabel(label.label))}
-            </span>
+        return `
+          <div style="margin-top:8px">
 
-            <span class="muted small">
-              ${label.count} observasi
-              (${label.percentage.toFixed(1)}%)
-            </span>
+            <div class="aspek-head">
+              <span class="small">
+                ${esc(formatLabel(label.label))}
+              </span>
+
+              <span class="muted small">
+                ${label.count} ${countUnit}
+                (${percentage}%)
+              </span>
+            </div>
+
+            <div class="bar">
+              <i style="
+                width:${label.percentage}%;
+                background:${toneVar(
+                  labelTone(label.label) === "good" ? 85 : 55
+                )}
+              "></i>
+            </div>
+
           </div>
-
-          <div class="bar">
-            <i style="
-              width:${label.percentage}%;
-              background:${toneVar(
-                labelTone(label.label) === "good" ? 85 : 55
-              )}
-            "></i>
-          </div>
-
-        </div>
-      `).join("")
+        `;
+      }).join("")
     : `
       <p class="muted small">
-        Tidak ada observasi valid yang dapat diringkas.
+        Belum ada hasil deteksi valid yang dapat ditampilkan.
       </p>
     `;
 
@@ -1054,19 +1071,14 @@ function cvIndicatorHtml(item) {
       <div class="aspek-head">
         <b>${esc(item.nama)}</b>
 
-        <span class="badge ${item.valid ? "good" : "warn"}">
-          ${item.valid ? "Tersedia" : "Tidak valid"}
+        <span class="badge ${item.valid > 0 ? "good" : "warn"}">
+          ${item.valid > 0 ? "Tersedia" : "Belum tersedia"}
         </span>
       </div>
 
       <p class="muted small">
         ${esc(item.deskripsi)}
       </p>
-
-      <div class="small" style="margin-top:8px">
-        <b>${item.valid}</b> observasi valid dari
-        <b>${item.total}</b> observasi
-      </div>
 
       ${
         item.averageConfidence != null
@@ -1083,7 +1095,7 @@ function cvIndicatorHtml(item) {
         item.dominantLabel
           ? `
             <p class="small">
-              Label terbanyak:
+              Kategori yang paling sering terdeteksi:
               <b>${esc(formatLabel(item.dominantLabel))}</b>
             </p>
           `
@@ -1096,48 +1108,36 @@ function cvIndicatorHtml(item) {
   `;
 }
 
+
+
 function cvSessionSummaryHtml() {
   const cv = rep.sesi.computerVision;
 
   if (!cv || !cv.total) {
     return `
       <p class="muted">
-        Belum ada hasil analisis visual yang dapat ditampilkan.
-        Pastikan pemrosesan video selesai dan observasi tersimpan
-        di database.
+        Hasil analisis visual belum tersedia.
+        Pastikan video berhasil diproses oleh sistem.
       </p>
     `;
   }
 
   return `
-    <div class="cv-summary-grid">
+    <div class="stack">
 
-      <div class="cv-summary-item">
-        <div class="muted small">Total observasi</div>
-        <b>${cv.total}</b>
-      </div>
-
-      <div class="cv-summary-item">
-        <div class="muted small">Observasi valid</div>
-        <b>${cv.valid}</b>
-      </div>
-
-      <div class="cv-summary-item">
-        <div class="muted small">Observasi tidak valid</div>
-        <b>${cv.total - cv.valid}</b>
-      </div>
+      ${cv.summaries.map(cvIndicatorHtml).join("")}
 
     </div>
 
-    ${cv.summaries.map(cvIndicatorHtml).join("")}
-
     <p class="muted small">
-      Distribusi label dihitung dari observasi valid yang
-      dikirimkan backend. Hasil ini merupakan keluaran model,
-      bukan penilaian otomatis terhadap kualitas kandidat.
+      Distribusi kategori dihitung berdasarkan hasil deteksi
+      yang dinyatakan valid oleh model. Hasil ini merupakan
+      keluaran Computer Vision dan bukan penilaian terhadap
+      kepribadian maupun kelayakan kerja pengguna.
     </p>
   `;
 }
+
 
 function aspekHtml() {
   return cvSessionSummaryHtml();
@@ -1155,12 +1155,16 @@ function isCameraGaze(label) {
   );
 }
 
+
+
 function trenFokusHtml() {
   const qs = rep.pertanyaan;
 
   const hasData = qs.some((q) =>
     q.cv.observations.some(
-      (item) => item.indicator === "gaze" && item.isValid
+      (item) =>
+        item.indicator === "gaze" &&
+        item.isValid
     )
   );
 
@@ -1168,7 +1172,7 @@ function trenFokusHtml() {
     return `
       <p class="muted">
         Grafik arah pandangan belum tersedia karena
-        observasi arah pandangan belum ditemukan.
+        hasil deteksi arah pandangan belum ditemukan.
       </p>
     `;
   }
@@ -1201,14 +1205,18 @@ function trenFokusHtml() {
     ) +
     `
       <p class="muted small">
-        Persentase menunjukkan proporsi observasi arah pandangan
-        yang terdeteksi mengarah ke kamera atau ke depan,
-        dibandingkan dengan seluruh observasi arah pandangan valid.
-        Garis putus-putus menunjukkan acuan 70%.
+        Persentase menunjukkan proporsi hasil deteksi arah
+        pandangan yang mengarah ke kamera atau ke depan
+        pada setiap pertanyaan. Perhitungan hanya menggunakan
+        hasil deteksi yang dinyatakan valid.
+
+        Garis putus-putus menunjukkan nilai acuan 70%.
       </p>
     `
   );
 }
+
+
 
 // ======================================================
 // 14. GRAFIK GERAKAN KEPALA
@@ -1229,6 +1237,7 @@ function countHeadLabels(q, pattern) {
   }).length;
 }
 
+
 function trenKepalaHtml() {
   const qs = rep.pertanyaan;
 
@@ -1244,7 +1253,7 @@ function trenKepalaHtml() {
     return `
       <p class="muted">
         Grafik gerakan kepala belum tersedia karena
-        observasi gerakan kepala belum ditemukan.
+        hasil deteksi gerakan kepala belum ditemukan.
       </p>
     `;
   }
@@ -1280,11 +1289,13 @@ function trenKepalaHtml() {
     ) +
     `
       <p class="muted small">
-        Grafik menunjukkan jumlah observasi gerakan kepala
-        ke atas, ke kiri, dan ke kanan pada setiap pertanyaan.
+        Grafik menunjukkan jumlah gerakan kepala ke atas,
+        ke kiri, dan ke kanan yang terdeteksi pada setiap
+        pertanyaan.
+
         Setiap warna mewakili kategori gerakan yang berbeda.
-        Perhitungan menggunakan observasi yang dinyatakan valid
-        oleh model.
+        Perhitungan menggunakan hasil deteksi yang dinyatakan
+        valid oleh model.
       </p>
     `
   );
@@ -1514,13 +1525,14 @@ function bandingHtml() {
 // 16. DETAIL COMPUTER VISION PER PERTANYAAN
 // ======================================================
 
+
 function cvDetailHtml(q) {
   if (!q.cv.total) {
     return `
       <h3>Analisis Computer Vision</h3>
 
       <p class="muted">
-        Belum ada observasi Computer Vision
+        Hasil deteksi Computer Vision belum tersedia
         untuk pertanyaan ini.
       </p>
     `;
@@ -1529,28 +1541,12 @@ function cvDetailHtml(q) {
   return `
     <h3>Analisis Computer Vision</h3>
 
-    <div class="cv-summary-grid">
-
-      <div class="cv-summary-item">
-        <div class="muted small">Total observasi</div>
-        <b>${q.cv.total}</b>
-      </div>
-
-      <div class="cv-summary-item">
-        <div class="muted small">Observasi valid</div>
-        <b>${q.cv.valid}</b>
-      </div>
-
-      <div class="cv-summary-item">
-        <div class="muted small">Observasi tidak valid</div>
-        <b>${q.cv.invalid}</b>
-      </div>
-
+    <div class="stack">
+      ${q.cv.summaries.map(cvIndicatorHtml).join("")}
     </div>
-
-    ${q.cv.summaries.map(cvIndicatorHtml).join("")}
   `;
 }
+
 
 // ======================================================
 // 17. DETAIL PERTANYAAN
@@ -1734,7 +1730,7 @@ function detail(q) {
           rows ||
           `
             <p class="muted">
-              Timeline observasi visual belum tersedia.
+              Data hasil deteksi visual belum tersedia.
             </p>
           `
         }
@@ -1843,9 +1839,6 @@ function transcript() {
     q.cv.summaries.forEach((item) => {
       L.push(
         `${item.nama}:`,
-        `- Total observasi: ${item.total}`,
-        `- Observasi valid: ${item.valid}`,
-        `- Observasi tidak valid: ${item.invalid}`,
         `- Label terbanyak: ${
           item.dominantLabel
             ? formatLabel(item.dominantLabel)

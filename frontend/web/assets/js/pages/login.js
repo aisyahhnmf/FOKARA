@@ -53,12 +53,12 @@ function setMode(nextMode) {
   $("registerTab").classList.toggle("active", registering);
 
   $("formTitle").textContent = registering
-    ? "Buat akun semRAUT"
+    ? "Buat akun FOKARA"
     : "Masuk ke akunmu";
 
   $("formSubtitle").textContent = registering
     ? "Daftar untuk menyimpan dan melanjutkan riwayat latihanmu."
-    : "Lanjutkan latihan wawancaramu bersama semRAUT.";
+    : "Lanjutkan latihan wawancaramu bersama FOKARA.";
 
   $("nameWrap").hidden = !registering;
   $("fullName").required = registering;

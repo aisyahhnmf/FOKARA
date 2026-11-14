@@ -369,7 +369,7 @@ function renderRubricGazeChart(data) {
   if (!validData.length) {
     container.innerHTML = `
       <p class="muted small">
-        Data pemenuhan rubrik dan fokus pandangan belum tersedia.
+        Data nilai rubrik dan arah pandangan belum tersedia.
       </p>
     `;
     return;
@@ -412,7 +412,7 @@ function renderHeadMotionChart(data) {
   if (!values.some(value => value !== null)) {
     container.innerHTML = `
       <p class="muted small">
-        Data arah kepala belum tersedia.
+        Data gerakan kepala belum tersedia.
       </p>
     `;
     return;
@@ -585,7 +585,7 @@ function renderTable(data) {
         <th>Tanggal</th>
         <th>Durasi</th>
         <th>Status</th>
-        <th>Rubrik</th>
+        <th>Nilai rubrik</th>
         <th>Aksi</th>
       </tr>
     </thead>

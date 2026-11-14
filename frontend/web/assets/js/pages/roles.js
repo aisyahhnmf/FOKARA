@@ -6,7 +6,11 @@ import { loadRoles } from "../core/data.js";
 import { reports } from "../core/store.js";
 import { esc } from "../core/utils.js";
 
-mountShell({ page: "roles", title: "Pilih Posisi", subtitle: "Pertanyaan dan rubrik mengikuti posisi yang Anda tuju" });
+mountShell({
+  page: "roles",
+  title: "Pilih Posisi",
+  subtitle: "Pilih posisi pekerjaan untuk memulai simulasi wawancara."
+});
 
 const grid = document.getElementById("roleGrid");
 try {
@@ -19,7 +23,10 @@ try {
       <h3>${esc(r.nama)}</h3>
       <p class="muted">${esc(r.deskripsi)}</p>
       <div class="chips">${komp.map((k) => `<span class="tag">${esc(k)}</span>`).join("")}</div>
-      <p class="muted small">${r.soal.length} pertanyaan · ${n ? `${n} percobaan tersimpan` : "belum ada percobaan"}</p>
+      <p class="muted small">
+        ${r.soal.length} pertanyaan latihan ·
+        ${n ? `${n} sesi tersimpan` : "Belum ada sesi latihan"}
+      </p>
       <a class="btn primary" href="interview.html?role=${encodeURIComponent(r.id)}">Mulai latihan</a>
     </article>`;
   }).join("");
