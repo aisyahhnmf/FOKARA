@@ -1,0 +1,324 @@
+
+/* =====================================================
+   SETTINGS PAGE
+===================================================== */
+
+.set {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-card {
+  width: 100%;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+}
+
+.settings-section-heading {
+  margin-bottom: 18px;
+}
+
+.settings-section-heading h2 {
+  margin: 0 0 5px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.settings-section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.row:first-child {
+  padding-top: 0;
+}
+
+.row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.row-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.row-info b,
+.account-row b {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.row-info .small {
+  margin-top: 5px;
+  line-height: 1.6;
+}
+
+.account-row {
+  padding-bottom: 0;
+}
+
+.account-id {
+  display: block;
+  max-width: 300px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere;
+  color: var(--accent-strong);
+}
+
+
+/* =====================================================
+   THEME SWATCHES
+===================================================== */
+
+.settings-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.option-info {
+  min-width: 0;
+}
+
+.option-info b {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.option-info p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.swatches {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.swatch i {
+  display: block;
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--c) 50%,
+    var(--t) 50%
+  );
+}
+
+.swatch:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.swatch.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.swatch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.setting-control {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.setting-control input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.toggle-track {
+  position: relative;
+  display: block;
+  width: 43px;
+  height: 24px;
+  border-radius: 30px;
+  background: var(--line);
+  transition: .2s ease;
+}
+
+.toggle-track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .18);
+  transition: .2s ease;
+}
+
+.setting-control input:checked + .toggle-track {
+  background: var(--accent);
+}
+
+.setting-control input:checked + .toggle-track::after {
+  transform: translateX(19px);
+}
+
+.setting-control input:focus-visible + .toggle-track {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+#bahasa {
+  min-width: 175px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+#bahasa:focus {
+  border-color: var(--accent);
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.danger-btn {
+  flex-shrink: 0;
+  padding: 9px 14px;
+  border: 1px solid var(--bad);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--bad);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.danger-btn:hover {
+  background: var(--bad);
+  color: white;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.settings-footer {
+  margin: 0;
+  padding: 4px 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 650px) {
+  .set {
+    gap: 14px;
+  }
+
+  .settings-card {
+    padding: 18px;
+  }
+
+  .settings-option {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .swatches {
+    justify-content: flex-start;
+  }
+
+  .account-id {
+    max-width: 180px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .account-id {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  #bahasa {
+    width: 100%;
+  }
+
+  .danger-btn {
+    width: 100%;
+  }
+}

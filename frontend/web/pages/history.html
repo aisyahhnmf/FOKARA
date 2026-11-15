@@ -1,0 +1,299 @@
+
+<!doctype html>
+<html lang="id" data-theme="langit">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Perkembangan Latihan - FOKARA</title>
+
+  <link rel="icon" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/pages/history.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body data-root="../">
+  <div id="content">
+
+    <!-- EMPTY / LOADING / ERROR -->
+    <section class="card history-empty" id="empty" hidden>
+      <div class="history-empty-icon">◷</div>
+      <h2>Riwayat latihan</h2>
+      <p class="muted">Belum ada sesi latihan tersimpan.</p>
+      <a class="btn primary" href="roles.html">Mulai latihan</a>
+    </section>
+
+    <main class="history-page" id="wrap" hidden>
+
+      <!-- HEADER -->
+      <header class="history-header">
+        <div>
+          <p class="history-eyebrow">PROGRES KAMU</p>
+          <h1>Perkembangan latihan</h1>
+          <p class="muted">
+            Pantau perkembangan hasil wawancara dan indikator visual
+            dari setiap percobaan.
+          </p>
+        </div>
+
+        <div class="history-filter">
+          <label for="roleSel">Posisi latihan</label>
+          <select id="roleSel">
+            <option value="all">Semua posisi</option>
+          </select>
+        </div>
+      </header>
+
+      <!-- SUMMARY -->
+      <section class="history-stats">
+
+        <article class="history-stat-card">
+          <div class="history-stat-icon">▤</div>
+          <div class="history-stat-content">
+            <span class="history-stat-label">Total sesi latihan</span>
+            <strong id="statTotal">0</strong>
+            <small>Sesi tersimpan</small>
+          </div>
+        </article>
+
+        <article class="history-stat-card">
+          <div class="history-stat-icon">↗</div>
+          <div class="history-stat-content">
+            <span class="history-stat-label">Nilai rubrik terakhir</span>
+            <strong id="statLatest">-</strong>
+            <small id="statLatestNote">Belum ada evaluasi</small>
+          </div>
+        </article>
+
+        <article class="history-stat-card">
+          <div class="history-stat-icon">⌁</div>
+          <div class="history-stat-content">
+            <span class="history-stat-label">Perubahan nilai</span>
+            <strong id="statChange">-</strong>
+            <small id="statChangeNote">Belum ada pembanding</small>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- PERFORMANCE CHARTS -->
+      <section class="history-section">
+
+        <div class="history-section-heading">
+          <div>
+            <p class="history-eyebrow">ANALISIS PERFORMA</p>
+            <h2>Perjalanan latihanmu</h2>
+            <p class="muted">
+              Lihat perkembangan hasil evaluasi dari satu percobaan
+              ke percobaan latihan berikutnya.
+            </p>
+          </div>
+        </div>
+
+        <div class="history-chart-grid">
+
+          <!-- RUBRIC -->
+          <article class="history-chart-card">
+            <div class="history-chart-heading">
+              <div>
+                <span class="history-chart-kicker">PERFORMA JAWABAN</span>
+                <h3>Perkembangan nilai rubrik</h3>
+                <p class="muted">
+                  Perubahan nilai evaluasi pada setiap percobaan latihan.
+                </p>
+              </div>
+              <span class="history-chart-icon">↗</span>
+            </div>
+
+            <div class="history-chart-legend-note">
+              <span class="legend-dot teal"></span>
+              Nilai rubrik
+            </div>
+
+            <div class="history-chart-canvas">
+              <canvas id="rubricChart"></canvas>
+              <p class="chart-empty" id="rubricEmpty" hidden>
+                Belum ada data nilai rubrik.
+              </p>
+            </div>
+          </article>
+
+          <!-- DURATION -->
+          <article class="history-chart-card">
+            <div class="history-chart-heading">
+              <div>
+                <span class="history-chart-kicker">DURASI LATIHAN</span>
+                <h3>Waktu yang digunakan</h3>
+                <p class="muted">
+                  Perbandingan durasi setiap percobaan latihan.
+                </p>
+              </div>
+              <span class="history-chart-icon">◷</span>
+            </div>
+
+            <div class="history-chart-legend-note">
+              <span class="legend-dot blue"></span>
+              Durasi latihan
+            </div>
+
+            <div class="history-chart-canvas">
+              <canvas id="durationChart"></canvas>
+              <p class="chart-empty" id="durationEmpty" hidden>
+                Data durasi belum tersedia.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- VISUAL ANALYSIS -->
+      <section class="history-section">
+
+        <div class="history-section-heading history-visual-heading">
+          <div>
+            <p class="history-eyebrow">ANALISIS VISUAL</p>
+            <h2>Analisis indikator visual</h2>
+            <p class="muted">
+              Lihat hasil deteksi pandangan, arah kepala, dan ekspresi
+              dari percobaan latihan yang sama.
+            </p>
+          </div>
+
+          <div class="history-filter history-visual-filter">
+            <label for="visualSessionSel">Pilih percobaan latihan</label>
+            <select id="visualSessionSel">
+              <option value="">Memuat sesi...</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="history-selected-session" id="visualSessionInfo">
+          Data visual dari percobaan yang dipilih.
+        </div>
+
+        <div class="history-chart-grid">
+
+          <!-- GAZE -->
+          <article class="history-chart-card">
+            <div class="history-chart-heading">
+              <div>
+                <span class="history-chart-kicker">PANDANGAN</span>
+                <h3>Distribusi arah pandangan</h3>
+                <p class="muted" id="gazeSubtitle">
+                  Distribusi label pada percobaan terpilih.
+                </p>
+              </div>
+              <span class="history-chart-icon">◉</span>
+            </div>
+
+            <div class="history-doughnut-layout">
+              <div class="history-doughnut">
+                <canvas id="gazeChart"></canvas>
+                <p class="chart-empty" id="gazeEmpty" hidden>
+                  Data pandangan belum tersedia.
+                </p>
+              </div>
+
+              <div class="history-chart-summary" id="gazeSummary"></div>
+            </div>
+          </article>
+
+          <!-- HEAD MOTION -->
+          <article class="history-chart-card">
+            <div class="history-chart-heading">
+              <div>
+                <span class="history-chart-kicker">GERAKAN KEPALA</span>
+                <h3>Distribusi arah kepala terdeteksi</h3>
+                <p class="muted" id="headMotionSubtitle">
+                  Distribusi label pada percobaan terpilih.
+                </p>
+              </div>
+              <span class="history-chart-icon">◉</span>
+            </div>
+
+            <div class="history-doughnut-layout">
+              <div class="history-doughnut">
+                <canvas id="headMotionChart"></canvas>
+                <p class="chart-empty" id="headMotionEmpty" hidden>
+                  Data gerakan kepala belum tersedia.
+                </p>
+              </div>
+
+              <div class="history-chart-summary" id="headMotionSummary"></div>
+            </div>
+          </article>
+
+          <!-- EXPRESSION -->
+          <article class="history-chart-card">
+            <div class="history-chart-heading">
+              <div>
+                <span class="history-chart-kicker">EKSPRESI WAJAH</span>
+                <h3>Distribusi ekspresi terdeteksi</h3>
+                <p class="muted" id="expressionSubtitle">
+                  Distribusi label pada percobaan terpilih.
+                </p>
+              </div>
+              <span class="history-chart-icon">☺</span>
+            </div>
+
+            <div class="history-doughnut-layout">
+              <div class="history-doughnut">
+                <canvas id="expressionChart"></canvas>
+                <p class="chart-empty" id="expressionEmpty" hidden>
+                  Data ekspresi belum tersedia.
+                </p>
+              </div>
+
+              <div class="history-chart-summary" id="expressionSummary"></div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- INFORMATION -->
+      <aside class="history-information">
+        <span class="history-information-icon">ⓘ</span>
+        <p>
+          Grafik indikator visual menunjukkan data yang berhasil dideteksi
+          dan diproses oleh sistem. Jumlah gerakan kepala, arah pandangan,
+          dan ekspresi wajah bukan ukuran kejujuran, kualitas perilaku,
+          atau kompetensi pengguna. Hasilnya perlu dipahami berdasarkan
+          konteks rekaman.
+        </p>
+      </aside>
+
+      <!-- SESSION TABLE -->
+      <section class="history-table-card">
+
+        <div class="history-table-heading">
+          <div>
+            <p class="history-eyebrow">ARSIP LATIHAN</p>
+            <h2>Semua sesi</h2>
+            <p class="muted">
+              Lihat kembali hasil dari setiap percobaan.
+            </p>
+          </div>
+
+          <span class="history-session-count" id="tableCount">
+            0 sesi
+          </span>
+        </div>
+
+        <div class="tw">
+          <table class="tbl" id="tbl"></table>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/history.js"></script>
+</body>
+</html>

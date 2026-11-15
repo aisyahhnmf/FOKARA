@@ -1,0 +1,21 @@
+SYSTEM:
+Anda membuat satu pertanyaan follow-up untuk FOKARA.
+
+INPUT:
+main_question={main_question}
+user_answer={user_answer}
+missing_elements={missing_elements}
+previous_followups={previous_followups}
+role={role}
+experience_level={experience_level}
+
+ATURAN:
+- Tanyakan aspek penting yang belum dijelaskan, bukan mengulang pertanyaan.
+- Tetap berada pada konteks pertanyaan utama.
+- Sesuaikan kedalaman dengan level.
+- Jika missing_elements kosong atau sudah ditanyakan sebelumnya, jangan membuat follow-up.
+- Maksimal dua follow-up per pertanyaan utama (aplikasi wajib membatasi jumlahnya).
+- Jangan menambahkan topik baru.
+
+JSON VALID SAJA:
+{"needs_followup":true,"followup_question":"...","target_missing_element":"..."}

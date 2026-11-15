@@ -1,0 +1,190 @@
+
+<!doctype html>
+<html lang="id" data-theme="langit">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>FOKARA</title>
+
+  <link rel="icon" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/pages/home.css">
+</head>
+
+<body data-root="">
+
+  <div id="content" class="stack">
+
+    <!-- SAPAAN -->
+    <section class="card welcome">
+
+      <div class="welcome-content">
+        <span class="welcome-label">YOUR INTERVIEW PRACTICE SPACE</span>
+
+        <h2>
+          Halo, <span id="greetingName">Pengguna</span>!
+        </h2>
+
+        <p>
+          Selamat datang kembali di FOKARA.
+          Setiap latihan adalah kesempatan untuk berkembang.
+          Yuk, asah kemampuan wawancaramu dan persiapkan dirimu
+          untuk kesempatan karier berikutnya!
+        </p>
+
+        <a class="btn primary" href="pages/roles.html">
+          <span>Mulai latihan</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="welcome-decoration" aria-hidden="true">
+        <div class="welcome-circle">
+          <span>✦</span>
+        </div>
+        <div class="welcome-caption">
+          Practice. Improve. Grow.
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- STATISTIK -->
+    <section class="home-stats">
+
+      <article class="card stat-card">
+        <div class="stat-icon">▤</div>
+        <div>
+          <span class="muted small">Total latihan</span>
+          <strong id="totalPractice">0</strong>
+          <span class="stat-description">Percobaan wawancara</span>
+        </div>
+      </article>
+
+      <article class="card stat-card">
+        <div class="stat-icon">↗</div>
+        <div>
+          <span class="muted small">Nilai terakhir</span>
+          <strong id="latestScore">–</strong>
+          <span class="stat-description">Nilai evaluasi rubrik</span>
+        </div>
+      </article>
+
+      <article class="card stat-card">
+        <div class="stat-icon">✓</div>
+        <div>
+          <span class="muted small">Evaluasi terakhir</span>
+          <strong id="evaluatedQuestions">–</strong>
+          <span class="stat-description">Pertanyaan dievaluasi</span>
+        </div>
+      </article>
+
+    </section>
+
+
+    <!-- PANDUAN -->
+    <section class="home-section">
+
+      <div class="section-heading">
+        <div>
+          <h2>Mulai perjalananmu</h2>
+          <p class="muted">Tiga langkah sederhana untuk berlatih bersama FOKARA.</p>
+        </div>
+      </div>
+
+      <div class="grid g3 home-steps">
+
+        <article class="card step-card">
+          <span class="chip">01</span>
+          <h3>Pilih posisi pekerjaan</h3>
+          <p class="muted">
+            Pilih posisi yang ingin kamu latih.
+            Pertanyaan dan kriteria penilaian disesuaikan
+            dengan posisi tersebut.
+          </p>
+        </article>
+
+        <article class="card step-card">
+          <span class="chip">02</span>
+          <h3>Ikuti simulasi wawancara</h3>
+          <p class="muted">
+            Jawab setiap pertanyaan melalui kamera.
+            Rekaman diproses untuk menghasilkan transkrip
+            dan indikator visual.
+          </p>
+        </article>
+
+        <article class="card step-card">
+          <span class="chip">03</span>
+          <h3>Tinjau hasil latihan</h3>
+          <p class="muted">
+            Pelajari penilaian jawaban dan hasil analisis visual,
+            lalu gunakan sarannya untuk latihan berikutnya.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- LAPORAN TERAKHIR -->
+    <section class="card last" id="lastCard" hidden>
+
+      <div class="last-heading">
+        <span class="muted small">LAPORAN TERAKHIR</span>
+        <b id="lastRole">Latihan</b>
+        <div class="muted small" id="lastDate">
+          Tanggal tidak tersedia
+        </div>
+      </div>
+
+      <div class="last-result">
+        <b class="last-score" id="lastScore">–</b>
+        <span class="muted small">Nilai evaluasi jawaban</span>
+      </div>
+
+      <a class="btn" id="lastLink" href="#">
+        Buka laporan →
+      </a>
+
+    </section>
+
+
+    <!-- TIPS -->
+    <section class="card daily-tip">
+
+      <div class="tip-icon">✦</div>
+
+      <div>
+        <span class="tip-label">TIPS WAWANCARA</span>
+        <h3>Gunakan metode STAR saat menjawab pertanyaan pengalaman.</h3>
+        <p class="muted">
+          Ceritakan Situation, Task, Action, dan Result.
+          Dengan struktur ini, jawabanmu akan lebih terarah,
+          jelas, dan mudah dipahami pewawancara.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- INFORMASI -->
+    <p class="banner">
+      FOKARA adalah alat latihan, bukan sistem seleksi.
+      Indikator visual bukan bukti kejujuran atau kompetensi.
+    </p>
+
+  </div>
+
+  <script
+    type="module"
+    src="assets/js/pages/home.js"
+  ></script>
+
+</body>
+</html>

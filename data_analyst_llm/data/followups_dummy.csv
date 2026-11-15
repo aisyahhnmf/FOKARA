@@ -1,0 +1,2 @@
+﻿session_id,parent_question_id,followup_id,followup_question,target_missing_element,is_synthetic
+SYN-001,TECH-002,FU-001,Bagaimana Anda menentukan apakah median merupakan pilihan imputasi yang tepat untuk kolom tersebut?,Justifikasi metode imputasi,True

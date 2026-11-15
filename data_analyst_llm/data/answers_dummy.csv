@@ -1,0 +1,10 @@
+﻿session_id,question_id,role,experience_level,answer_text,is_synthetic
+SYN-001,GEN-001,Data Analyst,Beginner,Saya mahasiswa yang tertarik pada data. Saya pernah mengerjakan tugas analisis data menggunakan Python dan membuat grafik sederhana.,True
+SYN-001,GEN-002,Data Analyst,Beginner,Saya tertarik posisi Data Analyst karena suka mencari informasi dari data. Saya pernah membersihkan data dan membuat visualisasi untuk tugas kuliah.,True
+SYN-001,TECH-002,Data Analyst,Beginner,"Saya akan melihat kolom mana yang kosong dan menghitung jumlahnya. Setelah itu saya cek apakah datanya penting. Kalau sedikit mungkin barisnya dihapus, tetapi kalau banyak bisa diisi dengan median untuk data numerik.",True
+SYN-002,GEN-001,Data Scientist,Intermediate,"Saya memiliki pengalaman proyek klasifikasi menggunakan Python. Saya melakukan preprocessing, membandingkan beberapa algoritma, dan mengevaluasi model menggunakan F1-score.",True
+SYN-002,GEN-002,Data Scientist,Intermediate,Saya merasa sesuai karena pernah mengerjakan proyek machine learning dari preprocessing sampai evaluasi. Saya juga terbiasa menjelaskan alasan pemilihan model.,True
+SYN-002,TECH-024,Data Scientist,Intermediate,"Saya akan melihat proporsi kelas, membagi data secara stratified, lalu membandingkan class weight dan resampling pada data training. Evaluasi menggunakan precision, recall, F1 dan PR-AUC.",True
+SYN-003,GEN-001,Data Engineer,Advanced,"Saya berfokus pada pembangunan pipeline data. Saya pernah merancang proses ingest, validasi, transformasi, dan pemuatan ke warehouse serta menambahkan logging untuk memantau kegagalan.",True
+SYN-003,GEN-002,Data Engineer,Advanced,"Saya dapat berkontribusi dalam merancang pipeline yang dapat dipantau dan dipulihkan. Saya mempertimbangkan idempotency, kualitas data, keamanan akses, dan biaya operasional.",True
+SYN-003,TECH-042,Data Engineer,Advanced,"Saya akan memeriksa query plan dan pola akses, ukuran partisi, data skew, shuffle, serta ukuran file. Setelah menemukan bottleneck, saya benchmark perubahan seperti partition pruning atau materialisasi.",True

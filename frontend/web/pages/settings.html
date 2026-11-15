@@ -1,0 +1,197 @@
+
+<!doctype html>
+<html lang="id" data-theme="langit">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#01957F">
+
+  <title>Pengaturan · FOKARA</title>
+
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/pages/settings.css">
+</head>
+
+<body data-root="../">
+
+  <div id="content" class="set">
+
+    <!-- ID AKUN -->
+    <section class="settings-card">
+
+      <div class="settings-section-heading">
+        <div>
+          <h2>Akun</h2>
+          <p>Informasi akun yang sedang digunakan</p>
+        </div>
+      </div>
+
+      <div class="row account-row">
+        <div class="row-info">
+          <b>ID akun</b>
+          <div class="muted small">
+            ID unik akun Supabase untuk menghubungkan sesi latihan Anda
+          </div>
+        </div>
+
+        <b id="pidText" class="account-id">
+          Memuat ID akun...
+        </b>
+      </div>
+
+    </section>
+
+
+    <!-- TEMA TAMPILAN -->
+    <section class="settings-card">
+
+      <div class="settings-section-heading">
+        <div>
+          <h2>Tampilan</h2>
+          <p>Sesuaikan warna tampilan FOKARA</p>
+        </div>
+      </div>
+
+      <div class="settings-option">
+        <div class="option-info">
+          <b>Tema warna</b>
+          <p>Pilih warna yang paling nyaman untuk Anda</p>
+        </div>
+
+        <div class="swatches">
+
+          <button
+            type="button"
+            class="swatch"
+            data-theme="langit"
+            style="--c:#01957F; --t:#C3FFF7;"
+            aria-label="Tema Langit"
+            title="Langit"
+          >
+            <i></i>
+            <span>Langit</span>
+          </button>
+
+          <button
+            type="button"
+            class="swatch"
+            data-theme="mint"
+            style="--c:#438B70; --t:#DDF4E8;"
+            aria-label="Tema Mint"
+            title="Mint"
+          >
+            <i></i>
+            <span>Mint</span>
+          </button>
+
+          <button
+            type="button"
+            class="swatch"
+            data-theme="persik"
+            style="--c:#D77B62; --t:#FFE5D8;"
+            aria-label="Tema Persik"
+            title="Persik"
+          >
+            <i></i>
+            <span>Persik</span>
+          </button>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- PREFERENSI LATIHAN -->
+    <section class="settings-card">
+
+      <div class="settings-section-heading">
+        <div>
+          <h2>Preferensi latihan</h2>
+          <p>Atur pengalaman selama melakukan latihan wawancara</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-info">
+          <b>Mirror kamera</b>
+          <div class="muted small">
+            Balik tampilan kamera secara horizontal seperti bercermin
+          </div>
+        </div>
+
+        <label class="setting-control" for="mirror">
+          <input
+            type="checkbox"
+            id="mirror"
+            name="mirror"
+          >
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="row">
+        <div class="row-info">
+          <b>Bahasa</b>
+          <div class="muted small">
+            Pilih preferensi bahasa aplikasi
+          </div>
+        </div>
+
+        <select id="bahasa" name="bahasa">
+          <option value="id">Bahasa Indonesia</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+
+    </section>
+
+
+    <!-- RIWAYAT -->
+    <section class="settings-card">
+
+      <div class="settings-section-heading">
+        <div>
+          <h2>Data dan riwayat</h2>
+          <p>Kelola riwayat laporan latihan pada browser ini</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row-info">
+          <b>Hapus riwayat laporan</b>
+          <div class="muted small">
+            Menghapus seluruh riwayat laporan yang tersimpan secara lokal di browser ini
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="clearBtn"
+          class="btn danger-btn"
+        >
+          Hapus riwayat
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- INFORMASI -->
+    <p class="settings-footer">
+      FOKARA · Pengaturan akun dan preferensi latihan
+    </p>
+
+  </div>
+
+
+  <script
+    type="module"
+    src="../assets/js/pages/settings.js"
+  ></script>
+
+</body>
+</html>
